@@ -20,9 +20,7 @@ export async function createOrUpdateUser(userData: User) {
     const newUser = await UserModel.findOneAndUpdate(
       { clerkId: userData.clerkId },
       {
-        $set: {
-          ...userData,
-        },
+        $set: userData,
       },
       { upsert: true, new: true }
     );
