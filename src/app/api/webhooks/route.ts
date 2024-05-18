@@ -76,6 +76,7 @@ export async function POST(req: Request) {
     };
     try {
       await createOrUpdateUser(newUser);
+      console.log("user created or updated successfully");
       return new Response(" User created or updated successfully ", {
         status: 200,
       });
@@ -96,6 +97,7 @@ export async function POST(req: Request) {
       return new Response("user deleted successfully from Database", {
         status: 200,
       });
+      console.log("user deleted successfully from Database");
     } catch (error) {
       console.log("this is an error when deleting the user  :: ", error);
       return new Response("Error occured when deleting the user ", {
