@@ -61,7 +61,7 @@ export async function POST(req: Request) {
   console.log("Webhook body:", body);
 
   // do your work
-  if (evt.type === "user.created" || evt.type === "user.updated") {
+  if (eventType === "user.created" || eventType === "user.updated") {
     // do something
     const user = evt.data;
     // clin up this code
@@ -74,8 +74,10 @@ export async function POST(req: Request) {
       lastName: user.last_name || "",
       photoUrl: user.image_url,
     };
+    console.log("new user::,", newUser);
     try {
-      await createOrUpdateUser(newUser);
+      const res = await createOrUpdateUser(newUser);
+      console.log("res::", res);
       console.log("user created or updated successfully");
       return new Response(" User created or updated successfully ", {
         status: 200,
@@ -90,14 +92,14 @@ export async function POST(req: Request) {
       });
     }
   }
-  if (evt.type === "user.deleted") {
+  if (eventType === "user.deleted") {
     // do something
     try {
       await deleteUser(evt.data.id || "");
+      console.log("user deleted successfully from Database");
       return new Response("user deleted successfully from Database", {
         status: 200,
       });
-      console.log("user deleted successfully from Database");
     } catch (error) {
       console.log("this is an error when deleting the user  :: ", error);
       return new Response("Error occured when deleting the user ", {
@@ -106,5 +108,5 @@ export async function POST(req: Request) {
     }
   }
 
-  return new Response("", { status: 200 });
+  return new Response("This is all good", { status: 200 });
 }
