@@ -17,17 +17,10 @@ export async function createOrUpdateUser(userData: User) {
   console.log("this is the data", userData);
   try {
     await dbConnect();
-    // const newUser = await UserModel.findOneAndUpdate(
-    //   { clerkId: userData.clerkId },
-    //   {
-    //     $set: userData,
-    //   },
-    //   { upsert: true, new: true }
-    // );
-    console.log("This is a user");
-    // await newUser.save();
-    // return newUser;
-    return true;
+    const newUser = await UserModel.create(userData);
+    console.log("This is a user::", newUser);
+    await newUser.save();
+    return newUser;
   } catch (error) {
     console.log("this is an error when creating the user", error);
     return error;
