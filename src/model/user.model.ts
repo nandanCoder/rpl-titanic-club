@@ -30,7 +30,6 @@ const UserSchema: Schema<Iuser> = new Schema({
   },
   number: {
     type: String,
-    required: [true, "number is required"],
     trim: true,
     unique: true,
   },

@@ -14,9 +14,9 @@ export interface User {
 }
 
 export async function createOrUpdateUser(userData: User) {
+  await dbConnect();
   console.log("this is the data::", userData);
   try {
-    await dbConnect();
     const newUser = await UserModel.findOneAndUpdate(
       { clerkId: userData.clerkId },
       {
