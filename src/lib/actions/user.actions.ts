@@ -14,11 +14,17 @@ export interface User {
 }
 
 export async function createOrUpdateUser(userData: User) {
-  console.log("this is the data", userData);
+  console.log("this is the data::", userData);
   try {
     await dbConnect();
-    const newUser = await UserModel.create(userData);
-    console.log("This is a user::", newUser);
+    const newUser = await UserModel.findOneAndUpdate(
+      { clerkId: userData.clerkId },
+      {
+        $set: userData,
+      },
+      { upsert: true, new: true }
+    );
+    console.log("This is a userL:::", newUser);
     await newUser.save();
     return newUser;
   } catch (error) {
