@@ -15,33 +15,24 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { getUsers } from "@/lib/actions/user.actions";
 import { Loader } from "@/components/shared/Loader";
+import {
+  calculatePercentageChange,
+  getLastMonthPercentage,
+} from "@/helpers/calculation";
 
 export type PaymentRes = {
   totalPayments: number;
   thisMonthPayments: number;
   lastMonthPayments: number;
 };
-export function calculatePercentageChange(
-  previousValue: number,
-  currentValue: number
-): number {
-  const change = currentValue - previousValue;
-  const percentageChange = (change / Math.abs(previousValue)) * 100;
-  return percentageChange;
-}
-function getLastMonthPercentage(
-  lastMonthPayments: number,
-  allTimePayments: number
-): number {
-  const percentage = (lastMonthPayments / allTimePayments) * 100;
-  return percentage;
-}
+
 function AllPayments() {
   const [payments, setPayments] = useState<Payment[] | Array<any>>();
   const [loading, setLoading] = useState<Boolean>(false);
   const [data, setData] = useState<PaymentRes>();
   const [users, setUsers] = useState<number>(0);
   //console.log("this is the data:::", payments);
+
   const getPayments = useCallback(async () => {
     setLoading(true);
     try {
