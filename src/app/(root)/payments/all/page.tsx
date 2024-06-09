@@ -36,7 +36,7 @@ function getLastMonthPercentage(
   const percentage = (lastMonthPayments / allTimePayments) * 100;
   return percentage;
 }
-function page() {
+function AllPayments() {
   const [payments, setPayments] = useState<Payment[] | Array<any>>();
   const [loading, setLoading] = useState<Boolean>(false);
   const [data, setData] = useState<PaymentRes>();
@@ -146,4 +146,4 @@ function page() {
   );
 }
 
-export default page;
+export default AllPayments;

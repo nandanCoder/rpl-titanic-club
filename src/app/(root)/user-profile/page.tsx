@@ -16,7 +16,7 @@ import { getUserProfile } from "@/lib/actions/user.actions";
 import { BanIcon, GiftIcon, IndianRupee } from "lucide-react";
 import React from "react";
 
-async function page() {
+async function UserProfile() {
   const userData = await getUserProfile();
   //console.log("Userdata", userData._id.toString());
   const bigPayment = await getBigPayments();
@@ -78,4 +78,4 @@ async function page() {
   );
 }
 
-export default page;
+export default UserProfile;

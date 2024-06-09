@@ -1,7 +1,7 @@
 import React from "react";
 
-function page() {
+function Gallery() {
   return <div className=" w-full text-center">Comming Soon ....</div>;
 }
 
-export default page;
+export default Gallery;

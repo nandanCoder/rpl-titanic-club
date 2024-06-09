@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { ApiResponse } from "@/types/ApiResponce";
 import { Loader } from "@/components/shared/Loader";
 
-function page() {
+function UserPayment() {
   const [data, setData] = useState<Payment[] | Array<any>>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const param = useParams<{ userId: string }>();
@@ -54,4 +54,4 @@ function page() {
   );
 }
 
-export default page;
+export default UserPayment;
